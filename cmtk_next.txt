@@ -1,0 +1,42 @@
+# https://stackoverflow.com/questions/12344368/automatically-use-the-directory-as-the-project-name-in-cmake
+
+cmtk:
+@TODO option_ifpvndef() trouver un meilleur nom. Là on croit que l'option est créée seulement si une pv (parent variable) n'existe pas.
+  child_option() ? <-
+  suboption() ? 
+  option_with_parent_init() ? 
+  option_with_parent_default() ?  
+  option_with_parent_default_value() ?
+  option_with_parent_value() ?
+@TODO Put on Github projet cmtk_devspace
+  .cmtk is a submodule
+  .cppexe, cpphutil, cpputil are just subdirs (test projects).
+---
+@TODO Add option in generate_macro_version_header: BUILD_HEADERS_BASE_DIR
+@TODO set_build_type_if_undefined() -> Replace by set_buid_type_ifndef([TYPES Release Debug ...] [DEFAULT 0|Release])
+
+git/bash/py:
+@TODO automatisation monter version cmake cpp project
+@TODO automatisation finish release
+@TODO automatisation update cmtk version
+@TODO automatisation update subprojects versions
+
+cmtkgen:
+@TODO If hearder_only lib no target-static comment generated
+
+cmakepj: Successor of cmtkgen
+
+-----
+
+trioption(BUILD_ARBA_SHARED "" ON)
+trioption(BUILD_ARBA_STATIC "" ON)
+trioption(BUILD_ARBA_TESTS "" ON)
+trioption(BUILD_ARBA_EXAMPLES "" ON)
+
+-----
+
+appt_version<2,1,0>
+using current_appt_version = appt_version<>
+if constexpr appt_version<>() < appt_version<2,1,0>()
+
+semversion
