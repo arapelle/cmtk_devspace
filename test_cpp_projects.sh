@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-command rm -rf /tmp/local \
-&& command cmake_test_install ./cppexe \
-&& command cmake_test_full_install ./cpphutil \
-&& command cmake_test_full_install ./cmtkt-cpputil \
-&& echo "SUCCESS" && bell && exit 0
+format="1;37;44"
+commandf "$format" rm -rf /tmp/local \
+&& commandf "$format" cmake_test_install ./cppexe \
+&& commandf "$format" cmake_test_full_install ./cpphutil \
+&& commandf "$format" cmake_test_full_install ./cmtkt-cpputil \
+&& echo "SUCCESS" && bell -b && exit 0
 
 echo "FAIL"
+tocsin -b
 exit 1
