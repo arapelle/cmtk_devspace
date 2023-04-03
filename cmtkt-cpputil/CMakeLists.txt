@@ -62,9 +62,10 @@ install_cpp_library(
 
 # Install project package
 # @TODO new install_package instruction sequence
-install_package(${PROJECT_NAME}
-                INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                EXPORT_NAMES cocorico) # <- Oo whut ?
+install_library_package(${PROJECT_NAME}
+                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
+                        UNINSTALL_SCRIPT
+)
 
 # Add examples:
 option_or_set_ifdef(BUILD_${PROJECT_NAME}_EXAMPLES "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)

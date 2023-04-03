@@ -56,9 +56,10 @@ install_cpp_library(
 )
 
 # Install package
-install_package(${PROJECT_NAME}
-                INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                EXPORT_NAMES ${PROJECT_NAME})
+install_library_package(${PROJECT_NAME}
+                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
+                        UNINSTALL_SCRIPT
+)
 
 option_or_set_ifdef(${PROJECT_NAME}_BUILD_EXAMPLES "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
 if(${PROJECT_NAME}_BUILD_EXAMPLES)
