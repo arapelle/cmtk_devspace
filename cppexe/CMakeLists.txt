@@ -47,6 +47,6 @@ add_cpp_executable(${PROJECT_NAME}
     SOURCES ${sources}
     )
 
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME})
 
 #-----

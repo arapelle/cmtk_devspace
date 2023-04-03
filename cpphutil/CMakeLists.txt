@@ -46,11 +46,12 @@ add_cpp_library(
 
 # Link targets:
 find_package(TBB 2021 REQUIRED CONFIG)
-cpp_library_link_libraries(HEADER_ONLY ${PROJECT_NAME} PUBLIC TBB::tbb)
+target_link_libraries(${PROJECT_NAME} INTERFACE TBB::tbb)
 
 # Install C++ library
 install_cpp_library(
     HEADER_ONLY ${PROJECT_NAME} 
+    EXPORT ${PROJECT_NAME}-targets
     NAMESPACE cmtkt::
 )
 
@@ -59,12 +60,12 @@ install_package(${PROJECT_NAME}
                 INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
                 EXPORT_NAMES ${PROJECT_NAME})
 
-option_ifpvndef(${PROJECT_NAME}_BUILD_EXAMPLES "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
+option_or_set_ifdef(${PROJECT_NAME}_BUILD_EXAMPLES "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
 if(${PROJECT_NAME}_BUILD_EXAMPLES)
     add_subdirectory(example)
 endif()
 
-option_ifpvndef(${PROJECT_NAME}_BUILD_TESTS "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
+option_or_set_ifdef(${PROJECT_NAME}_BUILD_TESTS "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
 if(${PROJECT_NAME}_BUILD_TESTS AND BUILD_TESTING)
     add_subdirectory(test)
 endif()
