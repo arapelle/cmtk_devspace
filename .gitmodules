@@ -1,0 +1,4 @@
+[submodule "cmtk"]
+	path = cmtk
+	url = ../cmtk.git
+	branch = release/0.7
