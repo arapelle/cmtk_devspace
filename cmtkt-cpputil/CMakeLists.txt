@@ -67,13 +67,13 @@ install_library_package(${PROJECT_NAME}
 )
 
 # Add examples:
-option_or_set_ifdef(BUILD_${PROJECT_NAME}_EXAMPLES "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
+option(BUILD_${PROJECT_NAME}_EXAMPLES "Build appt examples or not" OFF)
 if(BUILD_${PROJECT_NAME}_EXAMPLES)
     add_subdirectory(example)
 endif()
 
 # Add tests:
-option_or_set_ifdef(BUILD_${PROJECT_NAME}_TESTS "Build appt examples or not" OFF BUILD_ARBA_EXAMPLES)
+option(BUILD_${PROJECT_NAME}_TESTS "Build appt examples or not" OFF)
 if(BUILD_${PROJECT_NAME}_TESTS AND BUILD_TESTING)
     add_subdirectory(test)
 endif()
