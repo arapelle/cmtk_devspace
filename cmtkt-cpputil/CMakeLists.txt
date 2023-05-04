@@ -61,7 +61,6 @@ install_cpp_library(
 )
 
 # Install project package
-# @TODO new install_package instruction sequence
 install_library_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
                         UNINSTALL_SCRIPT
