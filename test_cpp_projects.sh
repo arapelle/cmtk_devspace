@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-format="1;37;44"
+format="{bold}{grey}{BLUE}"
 commandf "$format" rm -rf /tmp/local \
 && commandf "$format" cmake_test_install ./cppexe \
 && commandf "$format" cmake_test_full_install ./cpphutil \
