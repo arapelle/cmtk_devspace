@@ -4,7 +4,7 @@
 
 TEST(cpputil_tests, basic_test)
 {
-    ASSERT_EQ(module_name(), "cpputil");
+    ASSERT_EQ(cpputil::module_name(), "cpputil");
 }
 
 int main(int argc, char** argv)
