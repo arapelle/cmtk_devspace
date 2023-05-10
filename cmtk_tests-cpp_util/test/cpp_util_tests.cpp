@@ -1,10 +1,10 @@
-#include <cpputil/cpputil.hpp>
+#include <cpp_util/cpp_util.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
-TEST(cpputil_tests, basic_test)
+TEST(cpp_util_tests, basic_test)
 {
-    ASSERT_EQ(cpputil::module_name(), "cpputil");
+    ASSERT_EQ(cpp_util::module_name(), "cpp_util");
 }
 
 int main(int argc, char** argv)

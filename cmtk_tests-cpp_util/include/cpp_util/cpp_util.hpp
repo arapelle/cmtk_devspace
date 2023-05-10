@@ -4,7 +4,7 @@
 
 inline namespace cmtk_tests
 {
-namespace cpputil
+namespace cpp_util
 {
 
 std::string module_name();
