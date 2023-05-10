@@ -22,7 +22,7 @@ message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}
 include(CTest)
         
 ## Generated/Configured headers:
-generate_macro_version_header(generated_version_header 
+generate_version_macro_header(generated_version_header 
                               ${project_namespace}_${project_feature_name}
                               ${project_feature_name}/version.hpp)
 
