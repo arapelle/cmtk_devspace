@@ -1,10 +1,10 @@
-#include <cpphutil/cpphutil.hpp>
+#include <cpp_hutil/cpp_hutil.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
-TEST(cpphutil_tests, basic_test)
+TEST(cpp_hutil_tests, basic_test)
 {
-    ASSERT_EQ(cpphutil::module_name(), "cpphutil");
+    ASSERT_EQ(cpp_hutil::module_name(), "cpp_hutil");
 }
 
 int main(int argc, char** argv)

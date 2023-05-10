@@ -14,7 +14,7 @@ set_build_type_ifndef()
 # C++ PROJECT
 
 set(project_namespace "cmtk_tests")
-set(project_feature_name "cpphutil")
+set(project_feature_name "cpp_hutil")
 set(PROJECT_VERSION 0.1.0)
 project(${project_namespace}-${project_feature_name} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -28,7 +28,7 @@ generate_macro_version_header(generated_version_header
 
 ## Headers:
 set(headers
-  include/cpphutil/cpphutil.hpp
+  include/cpp_hutil/cpp_hutil.hpp
 )
 
 ## Add C++ library
