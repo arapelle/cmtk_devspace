@@ -4,6 +4,7 @@
 
 int main()
 {
-    std::cout << module_name() << std::endl;
+    std::cout << cmtk_tests::cppexe::module_name() << std::endl;
+    std::cout << cppexe::module_name() << std::endl;
     return EXIT_SUCCESS;
 }
