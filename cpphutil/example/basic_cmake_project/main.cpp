@@ -4,6 +4,7 @@
 
 int main()
 {
-    std::cout << module_name() << std::endl;
+    std::cout << cmtk_tests::cpphutil::module_name() << std::endl;
+    std::cout << cpphutil::module_name() << std::endl;
     return EXIT_SUCCESS;
 }
