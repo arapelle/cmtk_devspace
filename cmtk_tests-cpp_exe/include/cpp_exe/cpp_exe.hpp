@@ -4,7 +4,7 @@
 
 inline namespace cmtk_tests
 {
-namespace cppexe
+namespace cpp_exe
 {
 
 std::string module_name();

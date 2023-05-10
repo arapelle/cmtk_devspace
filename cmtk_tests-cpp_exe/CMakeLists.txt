@@ -14,7 +14,7 @@ set_build_type_ifndef()
 # C++ PROJECT
 
 set(project_namespace "cmtk_tests")
-set(project_feature_name "cppexe")
+set(project_feature_name "cpp_exe")
 set(PROJECT_VERSION 0.1.0)
 project(${project_namespace}-${project_feature_name} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -22,12 +22,12 @@ message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}
 
 ## Headers:
 set(headers
-    include/cppexe/cppexe.hpp
+    include/cpp_exe/cpp_exe.hpp
 )
 
 ## Sources:
 set(sources
-    src/cppexe.cpp
+    src/cpp_exe.cpp
     src/main.cpp
 )
 
