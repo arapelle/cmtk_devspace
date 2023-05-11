@@ -49,11 +49,11 @@ add_cpp_library(
 )
 
 ## Link C++ targets:
-find_package(TBB 2021 REQUIRED CONFIG)
+find_package(spdlog 1.8 REQUIRED CONFIG)
 cpp_library_link_libraries(
   SHARED ${PROJECT_NAME} 
   STATIC ${PROJECT_NAME}-static 
-  PUBLIC TBB::tbb
+  PUBLIC spdlog::spdlog
 )
 
 ## Install C++ library:
