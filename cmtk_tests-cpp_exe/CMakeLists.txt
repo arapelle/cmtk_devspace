@@ -40,5 +40,11 @@ add_cpp_executable(${PROJECT_NAME}
     SOURCES ${sources}
     )
 
+## Link C++ targets:
+find_package(spdlog 1.8 REQUIRED CONFIG)
+set_spdlog_active_level_ifndef()
+target_compile_definitions(${PROJECT_NAME} PRIVATE SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_${SPDLOG_ACTIVE_LEVEL})
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog)
+
 ## Install C++ executable:
 install(TARGETS ${PROJECT_NAME})
