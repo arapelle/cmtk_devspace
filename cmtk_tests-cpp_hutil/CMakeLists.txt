@@ -62,7 +62,7 @@ if(${PROJECT_NAME}_BUILD_EXAMPLES)
 endif()
 
 ## Add tests:
-option(${PROJECT_NAME}_BUILD_TESTS "Build ${PROJECT_NAME} examples or not" OFF)
+option(${PROJECT_NAME}_BUILD_TESTS "Build ${PROJECT_NAME} tests or not" OFF)
 if(${PROJECT_NAME}_BUILD_TESTS AND BUILD_TESTING)
     add_subdirectory(test)
 endif()
