@@ -8,7 +8,7 @@ include(cmtk/CppExecutableProject)
 
 # CONFIGURATION
 
-check_cmake_binary_dir()
+disable_in_source_build()
 set_build_type_ifndef()
 
 # C++ PROJECT
