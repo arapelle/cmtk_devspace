@@ -13,10 +13,11 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
+set(PROJECT_NAME "cmtk_tests-cpp_util")
 set(project_namespace "cmtk_tests")
 set(project_feature_name "cpp_util")
 set(PROJECT_VERSION 0.1.0)
-project(${project_namespace}-${project_feature_name} VERSION ${PROJECT_VERSION}
+project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
