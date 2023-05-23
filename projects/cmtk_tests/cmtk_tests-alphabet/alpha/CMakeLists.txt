@@ -30,9 +30,10 @@ src/alpha.cpp
 
 ## Add C++ library:
 add_cpp_library(
-  PUBLIC
   SHARED ${PROJECT_NAME}
   STATIC ${PROJECT_NAME}-static
+  BUILD_SHARED ${BUILD_${CMAKE_PROJECT_NAME}}
+  BUILD_STATIC ${BUILD_${CMAKE_PROJECT_NAME}-static}
   HEADERS ${headers}
   SOURCES ${sources}
   CXX_STANDARD 20

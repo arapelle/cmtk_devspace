@@ -22,12 +22,40 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
 message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
 
-trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not" OFF)
+trioption(BUILD_${PROJECT_NAME} "Indicates if we build a SHARED library." ON)
+trioption(BUILD_${PROJECT_NAME}-static "Indicates if we build a STATIC library." ON)
+trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not." OFF)
 
-# C++ PROJECT: alpha
+## C++ gathering target
 
-add_subdirectory(alpha)
+add_library(${PROJECT_NAME} INTERFACE)
+add_library(${PROJECT_NAME}-static INTERFACE)
 
-# C++ PROJECT: beta
+### Add sub-projects and link with them:
+set(libraries
+  alpha
+  beta
+)
 
-add_subdirectory(beta)
+foreach(library ${libraries})
+    add_subdirectory(${library})
+    if(TARGET ${project_namespace}-${library})
+        target_link_libraries(${PROJECT_NAME} INTERFACE ${project_namespace}-${library})
+    endif()
+    if(TARGET ${project_namespace}-${library}-static)
+        target_link_libraries(${PROJECT_NAME}-static INTERFACE ${project_namespace}-${library}-static)
+    endif()
+endforeach()
+
+### Export targets
+install_cpp_library(
+  SHARED ${PROJECT_NAME} 
+  STATIC ${PROJECT_NAME}-static 
+  EXPORT ${PROJECT_NAME}-targets
+)
+
+# Install package
+install_library_package(${PROJECT_NAME}
+                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
+                        UNINSTALL_SCRIPT
+)
