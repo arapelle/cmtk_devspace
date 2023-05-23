@@ -4,7 +4,7 @@
 
 TEST(beta_tests, basic_test)
 {
-    ASSERT_EQ(module_name(), "beta");
+    ASSERT_EQ(alphabet::beta::module_name(), "beta");
 }
 
 int main(int argc, char** argv)
