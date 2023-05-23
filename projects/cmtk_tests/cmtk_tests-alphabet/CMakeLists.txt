@@ -27,3 +27,7 @@ trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not" OFF)
 # C++ PROJECT: alpha
 
 add_subdirectory(alpha)
+
+# C++ PROJECT: beta
+
+add_subdirectory(beta)
