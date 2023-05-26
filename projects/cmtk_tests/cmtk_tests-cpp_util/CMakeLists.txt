@@ -41,9 +41,10 @@ src/cpp_util.cpp
 
 ## Add C++ library:
 add_cpp_library(
-  PUBLIC
   SHARED ${PROJECT_NAME}
   STATIC ${PROJECT_NAME}-static
+  BUILD_SHARED OPTION
+  BUILD_STATIC OPTION
   HEADERS ${headers} ${generated_version_header} # ${configured_headers}
   SOURCES ${sources}
   CXX_STANDARD 20
