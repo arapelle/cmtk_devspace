@@ -21,6 +21,11 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 
+## Generated/Configured headers:
+generate_version_macro_header(generated_version_header 
+                              ${project_namespace}_${project_feature_name}
+                              ${project_feature_name}/version.hpp)
+
 ## Headers:
 set(headers
     include/cpp_exe/cpp_exe.hpp
@@ -35,9 +40,7 @@ set(sources
 ## Add C++ executable:
 add_cpp_executable(${PROJECT_NAME}
     CXX_STANDARD 17
-    INCLUDE_DIRECTORIES include
-    VERSION_HEADER "version.hpp"
-    HEADERS ${headers}
+    HEADERS ${headers} ${generated_version_header}
     SOURCES ${sources}
     )
 
