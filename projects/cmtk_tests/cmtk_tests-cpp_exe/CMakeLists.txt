@@ -34,7 +34,6 @@ set(headers
 ## Sources:
 set(sources
     src/cpp_exe.cpp
-    src/main.cpp
 )
 
 ## Add C++ executable:
@@ -42,6 +41,7 @@ add_cpp_executable(${PROJECT_NAME}
     CXX_STANDARD 17
     HEADERS ${headers} ${generated_version_header}
     SOURCES ${sources}
+    MAIN src/main.cpp
     )
 
 ## Link C++ targets:
