@@ -25,11 +25,11 @@ include(CTest)
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
                               ${project_namespace}_${project_feature_name}
-                              ${project_feature_name}/version.hpp)
+                              ${project_namespace}/${project_feature_name}/version.hpp)
 
 ## Headers:
 set(headers
-  include/cpp_hutil/cpp_hutil.hpp
+  include/${project_namespace}/cpp_hutil/cpp_hutil.hpp
 )
 
 ## Add C++ library

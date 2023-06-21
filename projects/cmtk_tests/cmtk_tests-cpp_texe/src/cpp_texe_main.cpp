@@ -1,5 +1,5 @@
-#include <cpp_texe/cpp_texe.hpp> 
-#include <cpp_texe/version.hpp> 
+#include <cmtk_tests/cpp_texe/cpp_texe.hpp> 
+#include <cmtk_tests/cpp_texe/version.hpp> 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/ostream_sink.h>
 #include <iostream>

@@ -20,7 +20,7 @@ message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}"
 
 ## Headers:
 set(headers
-include/beta/beta.hpp
+include/cmtk_tests/beta/beta.hpp
 )
 
 ## Sources:

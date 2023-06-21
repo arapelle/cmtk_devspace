@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cpp_hutil/cpp_hutil.hpp>
-#include <cpp_hutil/version.hpp>
+#include <cmtk_tests/cpp_hutil/cpp_hutil.hpp>
+#include <cmtk_tests/cpp_hutil/version.hpp>
 
 int main()
 {

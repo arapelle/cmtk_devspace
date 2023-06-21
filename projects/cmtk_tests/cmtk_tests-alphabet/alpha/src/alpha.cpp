@@ -1,4 +1,4 @@
-#include <alpha/alpha.hpp> 
+#include <cmtk_tests/alpha/alpha.hpp> 
 
 inline namespace cmtk_tests
 {

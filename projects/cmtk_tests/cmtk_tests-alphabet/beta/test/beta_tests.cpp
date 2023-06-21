@@ -1,4 +1,4 @@
-#include <beta/beta.hpp>
+#include <cmtk_tests/beta/beta.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 

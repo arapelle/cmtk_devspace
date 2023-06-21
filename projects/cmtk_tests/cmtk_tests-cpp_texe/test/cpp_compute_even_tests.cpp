@@ -1,4 +1,4 @@
-#include <cpp_texe/cpp_texe_main.hpp>
+#include <cmtk_tests/cpp_texe/cpp_texe_main.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 

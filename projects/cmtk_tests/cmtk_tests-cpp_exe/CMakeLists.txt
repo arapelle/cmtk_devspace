@@ -24,11 +24,11 @@ message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
                               ${project_namespace}_${project_feature_name}
-                              ${project_feature_name}/version.hpp)
+                              ${project_namespace}/${project_feature_name}/version.hpp)
 
 ## Headers:
 set(headers
-    include/cpp_exe/cpp_exe.hpp
+    include/cmtk_tests/cpp_exe/cpp_exe.hpp
 )
 
 ## Sources:

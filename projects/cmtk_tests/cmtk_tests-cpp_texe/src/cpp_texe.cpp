@@ -1,4 +1,4 @@
-#include <cpp_texe/cpp_texe.hpp> 
+#include <cmtk_tests/cpp_texe/cpp_texe.hpp> 
 
 inline namespace cmtk_tests
 {

@@ -1,5 +1,5 @@
-#include <cpp_exe/cpp_exe.hpp> 
-#include <cpp_exe/version.hpp> 
+#include <cmtk_tests/cpp_exe/cpp_exe.hpp> 
+#include <cmtk_tests/cpp_exe/version.hpp> 
 #include <spdlog/spdlog.h>
 #include <iostream>
 #include <cstdlib>
