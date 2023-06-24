@@ -12,5 +12,5 @@ find_or_fetch_GTest()
 add_cpp_executable_basic_tests(GTest::gtest
                             OBJECT ${PROJECT_NAME}-object
                             SOURCES cpp_compute_even_tests.cpp
-                              #     cpp_compute_odd_tests.cpp
+                                    cpp_compute_odd_tests.cpp
 )
