@@ -49,8 +49,8 @@ install_cpp_library(
 ## Install project package
 install_library_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                        UNINSTALL_SCRIPT
 )
+install_uninstall_script(${PROJECT_NAME})
 
 ## Add tests:
 option_or_set_ifdef(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not" OFF BUILD_${CMAKE_PROJECT_NAME}_TESTS)

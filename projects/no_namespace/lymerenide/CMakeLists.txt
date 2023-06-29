@@ -66,8 +66,8 @@ install_cpp_library(
 ## Install project package
 install_library_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                        UNINSTALL_SCRIPT
 )
+install_uninstall_script(${PROJECT_NAME})
 
 ## Add examples:
 option(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF)
