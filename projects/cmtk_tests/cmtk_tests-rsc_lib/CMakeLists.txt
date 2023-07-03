@@ -31,11 +31,15 @@ include(CTest)
 
 ## Resource files:
 set(resource_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/tale.txt            #    19  o
-    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/another-tale.txt    #    27  o
-    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/wallpaper_pink_tree.jpg  #  ~663 Ko
-    ${CMAKE_CURRENT_SOURCE_DIR}/rsc///birds//cardinal.jpg    # ~1.36 Mo
-    ${CMAKE_CURRENT_SOURCE_DIR}/rsc///birds//grey\ bird.jpg  # ~6.05 Mo
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/tale.txt                    #    19  o
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/another-tale.txt            #    29  o
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/third\ tale.txt             #    27  o
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc///text///fourth_tale.txt         #    29  o
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/text/short-message/message.txt   #     6  o
+    ${CMAKE_CURRENT_SOURCE_DIR}/rsc/icon.png                         #    ~5 Ko
+    # ${CMAKE_CURRENT_SOURCE_DIR}/rsc/wallpaper_pink_tree.jpg          #  ~663 Ko
+    # ${CMAKE_CURRENT_SOURCE_DIR}/rsc///birds//cardinal.jpg            # ~1.36 Mo
+    # ${CMAKE_CURRENT_SOURCE_DIR}/rsc///birds//grey\ bird.jpg          # ~6.05 Mo
 )
 
 ## Add C++ library:
