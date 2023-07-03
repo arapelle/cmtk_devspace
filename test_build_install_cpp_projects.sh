@@ -7,6 +7,7 @@ commandf "$format" rm -rf /tmp/local \
 && commandf "$format" cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-cpp_hutil \
 && commandf "$format" cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-cpp_util \
 && commandf "$format" cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-alphabet \
+&& commandf "$format" cmake_test_full_build ./projects/cmtk_tests/cmtk_tests-rsc_lib \
 && commandf "$format" cmake_test_full_install ./projects/no_namespace/lymerenide \
 && echo "SUCCESS" && bell -b && exit 0
 
