@@ -15,7 +15,7 @@ set_build_type_ifndef()
 
 set(PROJECT_NAME "cmtk_tests-rsc_lib")
 set(project_namespace "cmtk_tests")
-set(project_feature_name "rsc_lib")
+set(project_base_name "rsc_lib")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -25,9 +25,9 @@ include(CTest)
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-# generate_version_macro_header(generated_version_header 
-#                               ${project_namespace}_${project_feature_name}
-#                               ${project_namespace}/${project_feature_name}/version.hpp)
+generate_version_macro_header(generated_version_header 
+                              ${project_namespace}_${project_base_name}
+                              ${project_namespace}/${project_base_name}/version.hpp)
 
 ## Resource files:
 set(resource_files
@@ -43,30 +43,37 @@ set(resource_files
 )
 
 ## Add C++ library:
-add_rsc_cpp_library(NAME assets STATIC 
+add_rsc_cpp_library(
+    INLINE_PARENT_NAMESPACE ${project_namespace}
+    NAME ${project_base_name}
+    SHARED ${PROJECT_NAME}
+    STATIC ${PROJECT_NAME}-static
+    BUILD_SHARED OPTION
+    BUILD_STATIC OPTION
+    HEADERS ${generated_version_header}
     RESOURCES ${resource_files}
     RESOURCES_BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/rsc" 
     VIRTUAL_ROOT "RSC_LIB:/" 
-    INLINE_PARENT_NAMESPACE cmtk_tests
+    CXX_STANDARD 20
 )
 
 ## Install C++ library:
-# install_cpp_library(
-#   SHARED ${PROJECT_NAME} 
-#   STATIC ${PROJECT_NAME}-static 
-#   EXPORT ${PROJECT_NAME}-targets
-# )
+install_cpp_library(
+    SHARED ${PROJECT_NAME} 
+    STATIC ${PROJECT_NAME}-static 
+    EXPORT ${PROJECT_NAME}-targets
+)
 
 ## Install project package
-# install_library_package(${PROJECT_NAME}
-#                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-# )
-# install_uninstall_script(${PROJECT_NAME})
+install_library_package(${PROJECT_NAME}
+                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
+)
+install_uninstall_script(${PROJECT_NAME})
 
 ## Add examples:
 option(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF)
 if(BUILD_${PROJECT_NAME}_EXAMPLES)
-    # add_subdirectory(example)
+    add_subdirectory(example)
 endif()
 
 ## Add tests:
