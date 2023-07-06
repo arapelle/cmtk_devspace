@@ -1,5 +1,5 @@
 #include <iostream>
-#include <resorice/resorice.hpp>
+#include <resorice/find_serialized_resource.hpp>
 #include <resorice/version.hpp>
 
 int main()
