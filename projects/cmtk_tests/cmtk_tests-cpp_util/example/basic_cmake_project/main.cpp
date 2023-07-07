@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cpp_util/cpp_util.hpp>
-#include <cpp_util/version.hpp>
+#include <cmtk_tests/cpp_util/cpp_util.hpp>
+#include <cmtk_tests/cpp_util/version.hpp>
 
 int main()
 {

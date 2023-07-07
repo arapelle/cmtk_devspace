@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.26)
 # CMAKE INCLUDES
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
-include(cmtk/Project)
+include(cmtk/CppProject)
 include(CMakePrintHelpers)
 
 # CONFIGURATION
@@ -22,14 +22,21 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
 message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
 
-trioption(BUILD_${PROJECT_NAME} "Indicates if we build a SHARED library." ON)
-trioption(BUILD_${PROJECT_NAME}-static "Indicates if we build a STATIC library." ON)
-trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not." OFF)
-
 ## C++ gathering target
 
 add_library(${PROJECT_NAME} INTERFACE)
 add_library(${PROJECT_NAME}-static INTERFACE)
+
+trioption(BUILD_${PROJECT_NAME} "Indicates if we build a SHARED library." ON)
+trioption(BUILD_${PROJECT_NAME}-static "Indicates if we build a STATIC library." ON)
+trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not." OFF)
+
+## Generated/Configured headers:
+generate_version_macro_header(generated_version_header 
+                              ${project_namespace}_${project_feature_name}
+                              ${project_namespace}/${project_feature_name}/version.hpp)
+
+target_sources(${PROJECT_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${generated_version_header})
 
 ### Add sub-projects and link with them:
 set(libraries
@@ -57,5 +64,5 @@ install_cpp_library(
 # Install package
 install_library_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                        UNINSTALL_SCRIPT
 )
+install_uninstall_script(${PROJECT_NAME} ALL)

@@ -27,11 +27,11 @@ include(CTest)
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
                               ${project_namespace}_${project_feature_name}
-                              ${project_feature_name}/version.hpp)
+                              ${project_namespace}/${project_feature_name}/version.hpp)
 
 ## Headers:
 set(headers
-include/cpp_util/cpp_util.hpp
+include/${project_namespace}/cpp_util/cpp_util.hpp
 )
 
 ## Sources:
@@ -68,8 +68,8 @@ install_cpp_library(
 ## Install project package
 install_library_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-                        UNINSTALL_SCRIPT
 )
+install_uninstall_script(${PROJECT_NAME})
 
 ## Add examples:
 option(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF)

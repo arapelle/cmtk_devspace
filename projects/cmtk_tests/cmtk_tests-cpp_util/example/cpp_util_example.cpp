@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cpp_util/cpp_util.hpp>
+#include <cmtk_tests/cpp_util/cpp_util.hpp>
 #include <spdlog/spdlog.h>
 
 int main()

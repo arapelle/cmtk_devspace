@@ -1,4 +1,4 @@
-#include <cpp_util/cpp_util.hpp>
+#include <cmtk_tests/cpp_util/cpp_util.hpp>
 #include <gtest/gtest.h>
 #include <cstdlib>
 
