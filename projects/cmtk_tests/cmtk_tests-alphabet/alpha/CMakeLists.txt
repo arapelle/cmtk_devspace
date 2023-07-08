@@ -18,6 +18,11 @@ message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}"
 
 # C++ LIBRARY
 
+## Generated/Configured headers:
+generate_version_macro_header(generated_version_header 
+                              ${project_namespace}_${project_feature_name}
+                              ${project_namespace}/${project_feature_name}/version.hpp)
+
 ## Headers:
 set(headers
 include/cmtk_tests/alpha/alpha.hpp
@@ -34,7 +39,7 @@ add_cpp_library(
   STATIC ${PROJECT_NAME}-static
   BUILD_SHARED ${BUILD_${CMAKE_PROJECT_NAME}}
   BUILD_STATIC ${BUILD_${CMAKE_PROJECT_NAME}-static}
-  HEADERS ${headers}
+  HEADERS ${headers} ${generated_version_header}
   SOURCES ${sources}
   CXX_STANDARD 20
 )
