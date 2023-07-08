@@ -5,5 +5,5 @@ add_cpp_library_basic_tests(GTest::gtest_main
     STATIC ${PROJECT_NAME}-static
     SOURCES 
         alpha_tests.cpp
-        alpha_project_version_tests.cpp
+        project_version_tests.cpp
 )
