@@ -15,17 +15,19 @@ set_build_type_ifndef()
 
 set(PROJECT_NAME "cmtk_tests-cpp_hutil")
 set(project_namespace "cmtk_tests")
-set(project_feature_name "cpp_hutil")
+set(project_base_name "cpp_hutil")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
-        
+
+# C++ LIBRARY
+
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_feature_name}
-                              ${project_namespace}/${project_feature_name}/version.hpp)
+                              ${project_namespace}_${project_base_name}
+                              ${project_namespace}/${project_base_name}/version.hpp)
 
 ## Headers:
 set(headers
@@ -34,7 +36,6 @@ set(headers
 
 ## Add C++ library
 add_cpp_library(
-    PUBLIC
     HEADER_ONLY ${PROJECT_NAME}
     HEADERS ${headers} ${generated_version_header} # ${configured_headers}
     CXX_STANDARD 20
