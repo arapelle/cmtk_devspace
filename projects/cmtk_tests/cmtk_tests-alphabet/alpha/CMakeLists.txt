@@ -39,6 +39,14 @@ add_cpp_library(
   CXX_STANDARD 20
 )
 
+## Link C++ targets:
+find_package(spdlog 1.8 REQUIRED CONFIG)
+cpp_library_link_libraries(
+  SHARED ${PROJECT_NAME} 
+  STATIC ${PROJECT_NAME}-static 
+  PUBLIC spdlog::spdlog
+)
+
 ## Install C++ library:
 install_cpp_library(
   SHARED ${PROJECT_NAME} 
