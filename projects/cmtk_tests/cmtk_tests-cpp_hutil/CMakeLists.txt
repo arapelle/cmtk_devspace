@@ -21,7 +21,9 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
-        
+
+# C++ LIBRARY
+
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
                               ${project_namespace}_${project_feature_name}
@@ -34,7 +36,6 @@ set(headers
 
 ## Add C++ library
 add_cpp_library(
-    PUBLIC
     HEADER_ONLY ${PROJECT_NAME}
     HEADERS ${headers} ${generated_version_header} # ${configured_headers}
     CXX_STANDARD 20
