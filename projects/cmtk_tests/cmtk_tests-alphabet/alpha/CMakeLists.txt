@@ -70,3 +70,9 @@ option_or_set_ifdef(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or 
 if(BUILD_${PROJECT_NAME}_TESTS AND BUILD_TESTING)
     add_subdirectory(test)
 endif()
+
+## Add examples:
+option_or_set_ifdef(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF BUILD_${CMAKE_PROJECT_NAME}_EXAMPLES)
+if(BUILD_${PROJECT_NAME}_EXAMPLES AND BUILD_TESTING)
+    add_subdirectory(example)
+endif()
