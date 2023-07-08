@@ -15,7 +15,7 @@ set_build_type_ifndef()
 
 set(PROJECT_NAME "cmtk_tests-cpp_hutil")
 set(project_namespace "cmtk_tests")
-set(project_feature_name "cpp_hutil")
+set(project_base_name "cpp_hutil")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -26,8 +26,8 @@ include(CTest)
 
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_feature_name}
-                              ${project_namespace}/${project_feature_name}/version.hpp)
+                              ${project_namespace}_${project_base_name}
+                              ${project_namespace}/${project_base_name}/version.hpp)
 
 ## Headers:
 set(headers

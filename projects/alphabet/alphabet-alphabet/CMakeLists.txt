@@ -15,7 +15,7 @@ set_build_type_ifndef()
 
 set(PROJECT_NAME "alphabet-alphabet")
 set(project_namespace "alphabet")
-set(project_feature_name "alphabet")
+set(project_base_name "alphabet")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
