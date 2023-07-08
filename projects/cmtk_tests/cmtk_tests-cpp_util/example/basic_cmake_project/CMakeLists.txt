@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
 
-include(CMakePrintHelpers)
-
 project(basic_cmake_project)
 
 add_executable(${PROJECT_NAME} main.cpp)
