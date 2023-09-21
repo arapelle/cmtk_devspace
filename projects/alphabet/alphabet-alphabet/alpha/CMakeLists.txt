@@ -37,8 +37,8 @@ set(sources
 add_cpp_library(
     SHARED ${PROJECT_NAME}
     STATIC ${PROJECT_NAME}-static
-    BUILD_SHARED ${BUILD_${CMAKE_PROJECT_NAME}}
-    BUILD_STATIC ${BUILD_${CMAKE_PROJECT_NAME}-static}
+    BUILD_SHARED BUILD_${CMAKE_PROJECT_NAME}
+    BUILD_STATIC BUILD_${CMAKE_PROJECT_NAME}-static
     HEADERS ${headers} ${generated_version_header}
     SOURCES ${sources}
     CXX_STANDARD 20
@@ -60,9 +60,7 @@ install_cpp_library(
 )
 
 ## Install project package
-install_library_package(${PROJECT_NAME}
-                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-)
+install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})
 
 ## Add tests:
