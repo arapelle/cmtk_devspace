@@ -13,9 +13,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "cmtk_tests-cpp_texe")
-set(project_namespace "cmtk_tests")
-set(project_base_name "cpp_texe")
+set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_texe")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -23,13 +21,13 @@ message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}
 
 ## Generated/Configured headers:
 generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+                              ${PROJECT_NAMESPACE}_${PROJECT_BASE_NAME}
+                              ${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp)
 
 ## Headers:
 set(headers
-    include/${project_namespace}/cpp_texe/cpp_texe.hpp
-    include/${project_namespace}/cpp_texe/cpp_texe_main.hpp
+    include/${PROJECT_NAMESPACE}/cpp_texe/cpp_texe.hpp
+    include/${PROJECT_NAMESPACE}/cpp_texe/cpp_texe_main.hpp
 )
 
 ## Sources:

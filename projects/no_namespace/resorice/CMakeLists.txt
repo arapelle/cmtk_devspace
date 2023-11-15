@@ -13,7 +13,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "resorice")
+set_project_name(NAME "resorice")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
