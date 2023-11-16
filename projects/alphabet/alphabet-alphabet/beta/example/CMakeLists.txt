@@ -1,6 +1,5 @@
 add_cpp_library_examples(
-    SHARED ${PROJECT_NAME}
-    STATIC ${PROJECT_NAME}-static
+    HEADER_ONLY ${PROJECT_NAME}
     SOURCES
         beta_example.cpp
 )
