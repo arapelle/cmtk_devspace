@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.23)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
 include(cmtk/CppExecutableProject)
+include(cmtk/Spdlog)
 
 # CONFIGURATION
 
@@ -45,7 +46,7 @@ add_cpp_executable(${PROJECT_NAME}
 ## Link C++ targets:
 find_package(spdlog 1.8 REQUIRED CONFIG)
 set_SPDLOG_ACTIVE_LEVEL_ifndef()
-target_compile_definitions(${PROJECT_NAME} PRIVATE SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_${SPDLOG_ACTIVE_LEVEL})
+target_SPDLOG_ACTIVE_LEVEL_definition(${PROJECT_NAME})
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog)
 
 ## Install C++ executable:
