@@ -21,9 +21,10 @@ project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${PROJECT_NAMESPACE}_${PROJECT_BASE_NAME}
-                              ${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
@@ -41,7 +42,7 @@ set(sources
 add_cpp_executable(${PROJECT_NAME}
     OBJECT ${PROJECT_NAME}-object
     CXX_STANDARD 17
-    HEADERS ${headers} ${generated_version_header}
+    HEADERS ${headers} ${configured_headers}
     SOURCES ${sources}
     MAIN src/main.cpp
     )

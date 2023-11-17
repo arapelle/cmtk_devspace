@@ -33,11 +33,12 @@ trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not." OFF)
 trioption(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not." OFF)
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${PROJECT_NAMESPACE}
-                              ${PROJECT_NAMESPACE}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/version.hpp.in
+)
 
-target_sources(${PROJECT_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${generated_version_header})
+target_sources(${PROJECT_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${configured_headers})
 
 ### Add sub-projects and link with them:
 set(libraries

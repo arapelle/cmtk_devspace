@@ -19,9 +19,10 @@ message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}"
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${PROJECT_NAMESPACE}_${PROJECT_BASE_NAME}
-                              ${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
@@ -31,7 +32,7 @@ set(headers
 ## Add C++ library:
 add_cpp_library(
     HEADER_ONLY ${PROJECT_NAME}
-    HEADERS ${headers} ${generated_version_header}
+    HEADERS ${headers} ${configured_headers}
     CXX_STANDARD 20
 )
 

@@ -23,9 +23,10 @@ include(CTest)
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${PROJECT_NAMESPACE}_${PROJECT_BASE_NAME}
-                              ${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Resource files:
 set(resource_files
@@ -48,7 +49,7 @@ add_rsc_cpp_library(
     STATIC ${PROJECT_NAME}-static
     BUILD_SHARED OPTION
     BUILD_STATIC OPTION
-    HEADERS ${generated_version_header}
+    HEADERS ${generated_version_header} ${configured_headers}
     RESOURCES ${resource_files}
     RESOURCES_BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/rsc" 
     VIRTUAL_ROOT "RSC_LIB:/" 
