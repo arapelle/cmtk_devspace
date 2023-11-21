@@ -14,8 +14,8 @@ set_build_type_ifndef()
 # C++ MULTI-PROJECT
 
 set(PROJECT_NAME "alphabet-alphabet")
-set(project_namespace "alphabet")
-set(project_base_name "alphabet")
+set(PROJECT_NAMESPACE "alphabet")
+set(PROJECT_BASE_NAME "alphabet")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -33,11 +33,12 @@ trioption(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not." OFF)
 trioption(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not." OFF)
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${project_namespace}
-                              ${project_namespace}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/version.hpp.in
+)
 
-target_sources(${PROJECT_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${generated_version_header})
+target_sources(${PROJECT_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS include ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${configured_headers})
 
 ### Add sub-projects and link with them:
 set(libraries
@@ -47,11 +48,11 @@ set(libraries
 
 foreach(library ${libraries})
     add_subdirectory(${library})
-    if(TARGET ${project_namespace}-${library})
-        target_link_libraries(${PROJECT_NAME} INTERFACE ${project_namespace}-${library})
+    if(TARGET ${PROJECT_NAMESPACE}-${library})
+        target_link_libraries(${PROJECT_NAME} INTERFACE ${PROJECT_NAMESPACE}-${library})
     endif()
-    if(TARGET ${project_namespace}-${library}-static)
-        target_link_libraries(${PROJECT_NAME}-static INTERFACE ${project_namespace}-${library}-static)
+    if(TARGET ${PROJECT_NAMESPACE}-${library}-static)
+        target_link_libraries(${PROJECT_NAME}-static INTERFACE ${PROJECT_NAMESPACE}-${library}-static)
     endif()
 endforeach()
 

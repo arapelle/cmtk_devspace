@@ -13,9 +13,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "cmtk_tests-rsc_lib")
-set(project_namespace "cmtk_tests")
-set(project_base_name "rsc_lib")
+set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "rsc_lib")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -25,9 +23,10 @@ include(CTest)
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Resource files:
 set(resource_files
@@ -44,13 +43,13 @@ set(resource_files
 
 ## Add C++ library:
 add_rsc_cpp_library(
-    INLINE_PARENT_NAMESPACE ${project_namespace}
-    NAME ${project_base_name}
+    INLINE_PARENT_NAMESPACE ${PROJECT_NAMESPACE}
+    NAME ${PROJECT_BASE_NAME}
     SHARED ${PROJECT_NAME}
     STATIC ${PROJECT_NAME}-static
     BUILD_SHARED OPTION
     BUILD_STATIC OPTION
-    HEADERS ${generated_version_header}
+    HEADERS ${generated_version_header} ${configured_headers}
     RESOURCES ${resource_files}
     RESOURCES_BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/rsc" 
     VIRTUAL_ROOT "RSC_LIB:/" 

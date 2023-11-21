@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.23)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
 include(cmtk/CppExecutableProject)
+include(cmtk/Spdlog)
 
 # CONFIGURATION
 
@@ -13,23 +14,22 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "cmtk_tests-cpp_texe")
-set(project_namespace "cmtk_tests")
-set(project_base_name "cpp_texe")
+set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_texe")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
-    include/${project_namespace}/cpp_texe/cpp_texe.hpp
-    include/${project_namespace}/cpp_texe/cpp_texe_main.hpp
+    include/${PROJECT_NAMESPACE}/cpp_texe/cpp_texe.hpp
+    include/${PROJECT_NAMESPACE}/cpp_texe/cpp_texe_main.hpp
 )
 
 ## Sources:
@@ -42,7 +42,7 @@ set(sources
 add_cpp_executable(${PROJECT_NAME}
     OBJECT ${PROJECT_NAME}-object
     CXX_STANDARD 17
-    HEADERS ${headers} ${generated_version_header}
+    HEADERS ${headers} ${configured_headers}
     SOURCES ${sources}
     MAIN src/main.cpp
     )
@@ -50,7 +50,7 @@ add_cpp_executable(${PROJECT_NAME}
 ## Link C++ targets:
 find_package(spdlog 1.8 REQUIRED CONFIG)
 set_SPDLOG_ACTIVE_LEVEL_ifndef()
-target_compile_definitions(${PROJECT_NAME}-object PRIVATE SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_${SPDLOG_ACTIVE_LEVEL})
+target_SPDLOG_ACTIVE_LEVEL_definition(${PROJECT_NAME}-object)
 target_link_libraries(${PROJECT_NAME}-object PUBLIC spdlog::spdlog)
 
 ## Install C++ executable:

@@ -13,10 +13,12 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "cmtk_tests-cpp_util")
-set(project_namespace "cmtk_tests")
-set(project_base_name "cpp_util")
-set(PROJECT_VERSION 0.1.0)
+set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_util")
+set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
+cmake_print_variables(PROJECT_SEMANTIC_VERSION PROJECT_VERSION 
+    PROJECT_VERSION_MAJOR PROJECT_VERSION_MINOR PROJECT_VERSION_PATCH
+    PROJECT_VERSION_PRE_RELEASE PROJECT_VERSION_BUILD_METADATA
+)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
@@ -24,14 +26,19 @@ include(CTest)
 
 # C++ LIBRARY
 
+## Include external dependencies:
+
+add_subdirectory(external)
+
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
-include/${project_namespace}/cpp_util/cpp_util.hpp
+include/${PROJECT_NAMESPACE}/cpp_util/cpp_util.hpp
 )
 
 ## Sources:
@@ -45,7 +52,7 @@ add_cpp_library(
   STATIC ${PROJECT_NAME}-static
   BUILD_SHARED OPTION
   BUILD_STATIC OPTION
-  HEADERS ${headers} ${generated_version_header} # ${configured_headers}
+  HEADERS ${headers} ${configured_headers}
   SOURCES ${sources}
   CXX_STANDARD 20
 )
@@ -55,7 +62,9 @@ find_package_if_not_target(spdlog::spdlog spdlog 1.8 REQUIRED CONFIG)
 cpp_library_link_libraries(
   SHARED ${PROJECT_NAME} 
   STATIC ${PROJECT_NAME}-static 
-  PUBLIC spdlog::spdlog
+  PUBLIC
+    spdlog::spdlog
+    ctre::ctre
 )
 
 ## Install C++ library:

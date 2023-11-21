@@ -8,8 +8,8 @@ include(cmtk/CppLibraryProject)
 # C++ PROJECT
 
 set(PROJECT_NAME "alphabet-alpha")
-set(project_namespace "alphabet")
-set(project_base_name "alpha")
+set(PROJECT_NAMESPACE "alphabet")
+set(PROJECT_BASE_NAME "alpha")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -19,9 +19,10 @@ message(STATUS "PROJECT: ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}"
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${project_namespace}_${project_base_name}
-                              ${project_namespace}/${project_base_name}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
@@ -39,7 +40,7 @@ add_cpp_library(
     STATIC ${PROJECT_NAME}-static
     BUILD_SHARED BUILD_${CMAKE_PROJECT_NAME}
     BUILD_STATIC BUILD_${CMAKE_PROJECT_NAME}-static
-    HEADERS ${headers} ${generated_version_header}
+    HEADERS ${headers} ${configured_headers}
     SOURCES ${sources}
     CXX_STANDARD 20
 )

@@ -13,7 +13,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set(PROJECT_NAME "lymerenide")
+set_project_name(NAME "lymerenide")
 set(PROJECT_VERSION 0.1.0)
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -23,9 +23,10 @@ include(CTest)
 # C++ LIBRARY
 
 ## Generated/Configured headers:
-generate_version_macro_header(generated_version_header 
-                              ${PROJECT_NAME}
-                              ${PROJECT_NAME}/version.hpp)
+configure_headers(configured_headers
+    FILES
+        include/${PROJECT_NAME}/version.hpp.in
+)
 
 ## Headers:
 set(headers
@@ -43,7 +44,7 @@ add_cpp_library(
   STATIC ${PROJECT_NAME}-static
   BUILD_SHARED OPTION
   BUILD_STATIC OPTION
-  HEADERS ${headers} ${generated_version_header} # ${configured_headers}
+  HEADERS ${headers} ${configured_headers} 
   SOURCES ${sources}
   CXX_STANDARD 20
 )
