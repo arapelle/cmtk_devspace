@@ -26,6 +26,10 @@ include(CTest)
 
 # C++ LIBRARY
 
+## Include external dependencies:
+
+add_subdirectory(external)
+
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
@@ -58,7 +62,9 @@ find_package_if_not_target(spdlog::spdlog spdlog 1.8 REQUIRED CONFIG)
 cpp_library_link_libraries(
   SHARED ${PROJECT_NAME} 
   STATIC ${PROJECT_NAME}-static 
-  PUBLIC spdlog::spdlog
+  PUBLIC
+    spdlog::spdlog
+    ctre::ctre
 )
 
 ## Install C++ library:
