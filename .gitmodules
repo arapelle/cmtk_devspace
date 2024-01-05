@@ -1,4 +1,4 @@
 [submodule "cmtk"]
 	path = cmtk
 	url = git@github.com:arapelle/cmtk.git
-	branch = release/0.12.0
+	branch = release/0.12.1
