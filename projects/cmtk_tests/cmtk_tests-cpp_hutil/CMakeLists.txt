@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 
-# CMAKE INCLUDES
-
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
-include(cmtk/CppLibraryProject)
+include(cmtk/CMTKNS_CppLibraryProject)
+include(cmtk/Spdlog)
 
 # CONFIGURATION
 
@@ -14,10 +13,10 @@ set_build_type_ifndef()
 # C++ PROJECT
 
 set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_hutil")
-set(PROJECT_VERSION 0.1.0)
+set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
-message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
+message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_SEMANTIC_VERSION} ${CMAKE_BUILD_TYPE}")
 include(CTest)
 
 # C++ LIBRARY
@@ -34,36 +33,28 @@ set(headers
 )
 
 ## Add C++ library
-add_cpp_library(
-    HEADER_ONLY ${PROJECT_NAME}
-    HEADERS ${headers} ${configured_headers}
-    CXX_STANDARD 20
+CMTKNS_add_cpp_library(${PROJECT_NAME} HEADER_ONLY
+  HEADERS ${headers} ${configured_headers}
+  CXX_STANDARD 20
+  DEFAULT_WARNING_OPTIONS
 )
 
 ## Link targets:
 find_package(TBB 2021 REQUIRED CONFIG)
+
 target_link_libraries(${PROJECT_NAME} INTERFACE TBB::tbb)
 
-## Install C++ library
-install_cpp_library(
-    HEADER_ONLY ${PROJECT_NAME} 
-    EXPORT ${PROJECT_NAME}-targets
-)
-
-## Install package
-install_library_package(${PROJECT_NAME}
-                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-)
-install_uninstall_script(${PROJECT_NAME})
+## Add tests:
+add_test_subdirectory_if_build(test)
 
 ## Add examples:
-option(${PROJECT_NAME}_BUILD_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF)
-if(${PROJECT_NAME}_BUILD_EXAMPLES)
-    add_subdirectory(example)
-endif()
+add_example_subdirectory_if_build(example)
 
-## Add tests:
-option(${PROJECT_NAME}_BUILD_TESTS "Build ${PROJECT_NAME} tests or not" OFF)
-if(${PROJECT_NAME}_BUILD_TESTS AND BUILD_TESTING)
-    add_subdirectory(test)
-endif()
+# C++ INSTALL
+
+## Install C++ library:
+CMTKNS_install_cpp_libraries(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
+
+## Install project package
+CMTKNS_install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_uninstall_script(${PROJECT_NAME})

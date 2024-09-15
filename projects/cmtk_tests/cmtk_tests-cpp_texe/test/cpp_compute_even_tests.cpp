@@ -15,7 +15,7 @@ TEST(cpp_compute_even_tests, main__2_4_6__14)
 
     std::cout.rdbuf(sbuf);
     std::string output_str = buffer.str();
-    ASSERT_EQ(output_str.find("[info] operation-0.1.0(2, 4, 6) = 14"), 0);
+    ASSERT_EQ(output_str.find("[info] operation-0.11.2(2, 4, 6) = 14"), 0);
 }
 
 int main(int argc, char** argv)

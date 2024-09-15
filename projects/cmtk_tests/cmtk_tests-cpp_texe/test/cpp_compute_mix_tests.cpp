@@ -19,7 +19,7 @@ TEST(cpp_compute_mix_test, main__2_4_5__13)
 
     std::cout.rdbuf(sbuf);
     std::string output_str = buffer.str();
-    ASSERT_EQ(output_str.find("[info] operation-0.1.0(2, 4, 5) = 13"), 0);
+    ASSERT_EQ(output_str.find("[info] operation-0.11.2(2, 4, 5) = 13"), 0);
 #endif
 }
 
