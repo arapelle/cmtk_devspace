@@ -13,7 +13,7 @@ std::string module_name()
 
 int compute(int first, int second)
 {
-    SPDLOG_TRACE("{}::compute({}, {})", module_name(), first, second);
+    SPDLOG_INFO("{}::compute({}, {})", module_name(), first, second);
     return first * second;
 }
 

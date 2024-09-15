@@ -1,3 +1,7 @@
-add_cpp_library_basic_examples(SHARED ${PROJECT_NAME}
-                         STATIC ${PROJECT_NAME}-static
-                         SOURCES rsc_lib_example.cpp)
+include(cmtk/CMTKNS_CppLibraryExamples)
+include(cmtk/Spdlog)
+
+CMTKNS_add_cpp_library_basic_examples(${PROJECT_TARGET_NAME}
+    SOURCES
+    rsc_lib_example.cpp
+)
