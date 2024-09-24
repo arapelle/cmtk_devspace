@@ -18,7 +18,7 @@ project_names=(
 
 for ((i = 0; i < ${#project_names[@]}; ++i))
 do
-    cmake_uninstall_fpath="$install_prefix/$cmake_subdir/${project_names[$i]}/cmake_uninstall.cmake"
+    cmake_uninstall_fpath="$install_prefix/$cmake_subdir/${project_names[$i]}/uninstall.cmake"
     if [ -f "$cmake_uninstall_fpath" ]
     then
         commandf "$format" cmake -P "$cmake_uninstall_fpath"
