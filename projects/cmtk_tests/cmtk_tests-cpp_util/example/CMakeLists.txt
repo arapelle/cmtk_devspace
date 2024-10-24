@@ -1,12 +1,12 @@
-include(cmtk/CMTKNS_CppLibraryExamples)
+include(cmtk/CppLibraryExamples)
 include(cmtk/Spdlog)
 
-CMTKNS_add_cpp_library_basic_examples(${PROJECT_TARGET_NAME}
+add_cpp_library_basic_examples(${PROJECT_TARGET_NAME}
     SOURCES
         cpp_util_basic_example.cpp
 )
 
-CMTKNS_add_cpp_library_example(cpp_util_example ${PROJECT_TARGET_NAME} 
+add_cpp_library_example(cpp_util_example ${PROJECT_TARGET_NAME} 
     SOURCES
         cpp_util_example.cpp
 )

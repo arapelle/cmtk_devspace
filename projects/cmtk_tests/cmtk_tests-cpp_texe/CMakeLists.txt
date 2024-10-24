@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.23)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
-include(cmtk/CMTKNS_CppExecutableProject)
+include(cmtk/CppExecutableProject)
 include(cmtk/Spdlog)
 
 # CONFIGURATION

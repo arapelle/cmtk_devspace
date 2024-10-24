@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
-include(cmtk/CMTKNS_RscCppLibraryProject)
+include(cmtk/RscCppLibraryProject)
 
 # CONFIGURATION
 
@@ -41,7 +41,7 @@ else()
   set(PROJECT_TARGET_NAME "${PROJECT_NAME}-static")
 endif()
 
-CMTKNS_add_rsc_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE} 
+add_rsc_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE} 
     NAMESPACE ${PROJECT_NAME}
     HEADERS ${generated_version_header} ${configured_headers}
     RESOURCES ${resource_files}
@@ -61,8 +61,8 @@ add_example_subdirectory_if_build(example)
 # C++ INSTALL
 
 ## Install C++ library:
-CMTKNS_install_cpp_libraries(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
+install_cpp_libraries(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
 
 ## Install project package
-CMTKNS_install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})
