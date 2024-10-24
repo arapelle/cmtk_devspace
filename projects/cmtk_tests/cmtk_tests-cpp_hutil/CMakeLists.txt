@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
-include(cmtk/CMTKNS_CppLibraryProject)
+include(cmtk/CppLibraryProject)
 include(cmtk/Spdlog)
 
 # CONFIGURATION
@@ -33,7 +33,7 @@ set(headers
 )
 
 ## Add C++ library
-CMTKNS_add_cpp_library(${PROJECT_NAME} HEADER_ONLY
+add_cpp_library(${PROJECT_NAME} HEADER_ONLY
   HEADERS ${headers} ${configured_headers}
   CXX_STANDARD 20
   DEFAULT_WARNING_OPTIONS
@@ -53,8 +53,8 @@ add_example_subdirectory_if_build(example)
 # C++ INSTALL
 
 ## Install C++ library:
-CMTKNS_install_cpp_libraries(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
+install_cpp_libraries(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
 
 ## Install project package
-CMTKNS_install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})

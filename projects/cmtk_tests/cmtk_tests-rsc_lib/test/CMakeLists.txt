@@ -1,9 +1,9 @@
 
-include(cmtk/CMTKNS_CppLibraryTests)
+include(cmtk/CppLibraryTests)
 include(GoogleTest)
 
 find_package(GTest CONFIG REQUIRED)
 
-CMTKNS_add_cpp_library_basic_tests(${PROJECT_TARGET_NAME} GTest::gtest_main
+add_cpp_library_basic_tests(${PROJECT_TARGET_NAME} GTest::gtest_main
                             SOURCES rsc_lib_tests.cpp
 )
