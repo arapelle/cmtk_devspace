@@ -1,2 +1,11 @@
-add_cpp_library_basic_examples(HEADER_ONLY ${PROJECT_NAME}
-                         SOURCES cpp_hutil_example.cpp)
+include(cmtk/CppLibraryExamples)
+include(cmtk/Spdlog)
+
+set_SPDLOG_ACTIVE_LEVEL_ifndef(cpp_util_example)
+
+add_cpp_library_basic_examples(${PROJECT_NAME}
+    SOURCES
+        cpp_hutil_example.cpp
+)
+target_SPDLOG_ACTIVE_LEVEL_definition(cpp_hutil_example)
+                         

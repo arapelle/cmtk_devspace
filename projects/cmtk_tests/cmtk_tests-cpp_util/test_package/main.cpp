@@ -6,5 +6,6 @@ int main()
 {
     std::cout << cpp_util::module_name() << std::endl;
     std::cout << cmtk_tests::cpp_util::module_name() << std::endl;
+    std::cout << cpp_util::compute(2, 4) << std::endl;
     return EXIT_SUCCESS;
 }

@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 
-# CMAKE INCLUDES
-
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
 include(cmtk/CppLibraryProject)
+include(cmtk/Spdlog)
 
 # CONFIGURATION
 
@@ -39,45 +38,41 @@ set(sources
 )
 
 ## Add C++ library:
-add_cpp_library(
-  SHARED ${PROJECT_NAME}
-  STATIC ${PROJECT_NAME}-static
-  BUILD_SHARED OPTION
-  BUILD_STATIC OPTION
-  HEADERS ${headers} ${configured_headers} 
+shared_or_static_option(${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE "SHARED")
+if("${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}" STREQUAL "SHARED")
+  set(PROJECT_TARGET_NAME "${PROJECT_NAME}")
+else()
+  set(PROJECT_TARGET_NAME "${PROJECT_NAME}-static")
+endif()
+
+add_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}
+  HEADERS ${headers} ${configured_headers}
   SOURCES ${sources}
   CXX_STANDARD 20
+  DEFAULT_WARNING_OPTIONS
 )
 
 ## Link C++ targets:
 find_package(spdlog 1.8 REQUIRED CONFIG)
-cpp_library_link_libraries(
-  SHARED ${PROJECT_NAME} 
-  STATIC ${PROJECT_NAME}-static 
-  PUBLIC spdlog::spdlog
-)
+set_SPDLOG_ACTIVE_LEVEL_ifndef()
 
-## Install C++ library:
-install_cpp_library(
-  SHARED ${PROJECT_NAME} 
-  STATIC ${PROJECT_NAME}-static 
-  EXPORT ${PROJECT_NAME}-targets
+target_SPDLOG_ACTIVE_LEVEL_definition(${PROJECT_TARGET_NAME})
+target_link_libraries(${PROJECT_TARGET_NAME} 
+  PUBLIC
+    spdlog::spdlog
 )
-
-## Install project package
-install_library_package(${PROJECT_NAME}
-                        INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
-)
-install_uninstall_script(${PROJECT_NAME})
-
-## Add examples:
-option(BUILD_${PROJECT_NAME}_EXAMPLES "Build ${PROJECT_NAME} examples or not" OFF)
-if(BUILD_${PROJECT_NAME}_EXAMPLES)
-    add_subdirectory(example)
-endif()
 
 ## Add tests:
-option(BUILD_${PROJECT_NAME}_TESTS "Build ${PROJECT_NAME} tests or not" OFF)
-if(BUILD_${PROJECT_NAME}_TESTS AND BUILD_TESTING)
-    add_subdirectory(test)
-endif()
+add_test_subdirectory_if_build(test)
+
+## Add examples:
+add_example_subdirectory_if_build(example)
+
+# C++ INSTALL
+
+## Install C++ library:
+install_cpp_libraries(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
+
+## Install project package
+install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_uninstall_script(${PROJECT_NAME})
