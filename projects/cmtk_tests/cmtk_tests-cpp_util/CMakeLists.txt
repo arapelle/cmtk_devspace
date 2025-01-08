@@ -7,7 +7,7 @@ include(cmtk/Spdlog)
 
 # CONFIGURATION
 
-disable_in_source_build()
+check_in_source_build()
 set_build_type_ifndef()
 
 # C++ PROJECT
