@@ -8,7 +8,7 @@ namespace cpp_util
 
 std::string module_name()
 {
-    return "cpp_util";
+    return "@PROJECT_BASE_NAME@";
 }
 
 int compute(int first, int second)
