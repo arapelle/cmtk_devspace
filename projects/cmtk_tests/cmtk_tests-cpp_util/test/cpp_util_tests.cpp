@@ -4,7 +4,7 @@
 
 TEST(cpp_util_tests, module_name__cpp_util)
 {
-    ASSERT_EQ(cpp_util::module_name(), "cpp_util");
+    ASSERT_EQ(cpp_util::module_name(), "cmtk_tests-cpp_util");
 }
 
 TEST(cpp_util_tests, compute__VALUE_5__5VALUE)

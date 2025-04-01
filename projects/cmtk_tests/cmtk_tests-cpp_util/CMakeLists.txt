@@ -12,7 +12,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set_project_name(NAMESPACE "cmtk_tests" FEATURE_NAME "cpp_util")
+set_project_name(NAMESPACE "cmtk_tests_pro" FEATURE_NAME "cpp_utility" CODE_NAMESPACE "cmtk_tests" CODE_FEATURE_NAME "cpp_util")
 set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -27,12 +27,8 @@ add_subdirectory(external)
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
-        include/${PROJECT_NAMESPACE}/${PROJECT_FEATURE_NAME}/version.hpp.in
-)
-
-## Headers:
-set(headers
-  include/${PROJECT_NAMESPACE}/cpp_util/cpp_util.hpp
+        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_FEATURE_NAME}/version.hpp.in
+        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_FEATURE_NAME}/cpp_util.hpp.in
 )
 
 ## Generated/Configured sources:
