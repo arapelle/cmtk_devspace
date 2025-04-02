@@ -50,6 +50,7 @@ add_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}
   SOURCES ${configured_sources}
   CXX_STANDARD 20
   DEFAULT_WARNING_OPTIONS
+  DEFAULT_ERROR_OPTIONS
 )
 
 ## Link C++ targets:
