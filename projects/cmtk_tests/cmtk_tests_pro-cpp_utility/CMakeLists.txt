@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.25)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
@@ -45,10 +45,12 @@ else()
   set(PROJECT_TARGET_NAME "${PROJECT_NAME}-static")
 endif()
 
+cxx_standard_option(${PROJECT_UPPER_VAR_NAME}_CXX_STANDARD MIN 98 MAX 23)
+
 add_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}
   HEADERS ${headers} ${configured_headers}
   SOURCES ${configured_sources}
-  CXX_STANDARD 20
+  CXX_STANDARD ${${PROJECT_UPPER_VAR_NAME}_CXX_STANDARD}
   DEFAULT_WARNING_OPTIONS
   DEFAULT_ERROR_OPTIONS
 )
