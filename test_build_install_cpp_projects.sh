@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-format="{bold}{blue}"
+format="{bold}{blue}#> {*}"
 commandf "$format" rm -rf /tmp/local
 
 project_cmds=(
     "cmake_test_install      ./projects/cmtk_tests/cmtk_tests-cpp_exe"
     "cmake_test_full_build   ./projects/cmtk_tests/cmtk_tests-cpp_texe"
     "cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-cpp_hutil"
-    "cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-cpp_util"
+    "cmake_test_full_install ./projects/cmtk_tests/cmtk_tests_pro-cpp_utility"
     "cmake_test_full_install ./projects/cmtk_tests/cmtk_tests-rsc_lib"
     "cmake_test_full_install ./projects/no_namespace/lymerenide"
     "cmake_test_full_install ./projects/no_namespace/resorice"

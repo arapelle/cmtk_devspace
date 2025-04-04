@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.25)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../)
 include(CMakePrintHelpers)
@@ -12,7 +12,7 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_util")
+set_project_name(NAMESPACE "cmtk_tests_pro" FEATURE_NAME "cpp_utility" CODE_NAMESPACE "cmtk_tests" CODE_FEATURE_NAME "cpp_util")
 set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
@@ -27,12 +27,8 @@ add_subdirectory(external)
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
-        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
-)
-
-## Headers:
-set(headers
-  include/${PROJECT_NAMESPACE}/cpp_util/cpp_util.hpp
+        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_FEATURE_NAME}/version.hpp.in
+        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_FEATURE_NAME}/cpp_util.hpp.in
 )
 
 ## Generated/Configured sources:
@@ -49,11 +45,14 @@ else()
   set(PROJECT_TARGET_NAME "${PROJECT_NAME}-static")
 endif()
 
+cxx_standard_option(${PROJECT_UPPER_VAR_NAME}_CXX_STANDARD MIN 98 MAX 23)
+
 add_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}
   HEADERS ${headers} ${configured_headers}
   SOURCES ${configured_sources}
-  CXX_STANDARD 20
+  CXX_STANDARD ${${PROJECT_UPPER_VAR_NAME}_CXX_STANDARD}
   DEFAULT_WARNING_OPTIONS
+  DEFAULT_ERROR_OPTIONS
 )
 
 ## Link C++ targets:

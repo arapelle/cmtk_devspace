@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-format="{bold}{blue}"
+format="{bold}{blue}#> {*}"
 
 install_prefix="/tmp/local"
 lib_subdir="lib"

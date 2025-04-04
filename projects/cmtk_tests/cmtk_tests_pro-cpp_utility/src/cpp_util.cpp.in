@@ -1,14 +1,14 @@
 #include <cmtk_tests/cpp_util/cpp_util.hpp> 
 #include <spdlog/spdlog.h>
 
-inline namespace cmtk_tests
+inline namespace @PROJECT_CODE_NAMESPACE@
 {
-namespace cpp_util
+namespace @PROJECT_CODE_FEATURE_NAME@
 {
 
 std::string module_name()
 {
-    return "@PROJECT_BASE_NAME@";
+    return "@PROJECT_CODE_NAME@";
 }
 
 int compute(int first, int second)
