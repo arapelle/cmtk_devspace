@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-format="{bold}{blue}"
+format="{bold}{blue}#> {*}"
 commandf "$format" rm -rf /tmp/local
 
 project_cmds=(
