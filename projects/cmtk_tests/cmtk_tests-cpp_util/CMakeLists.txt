@@ -7,7 +7,7 @@ include(cmtk/Spdlog)
 
 # CONFIGURATION
 
-disable_in_source_build()
+check_in_source_build()
 set_build_type_ifndef()
 
 # C++ PROJECT
@@ -35,9 +35,10 @@ set(headers
   include/${PROJECT_NAMESPACE}/cpp_util/cpp_util.hpp
 )
 
-## Sources:
-set(sources
-  src/cpp_util.cpp
+## Generated/Configured sources:
+configure_headers(configured_sources
+    FILES
+        src/cpp_util.cpp.in
 )
 
 ## Add C++ library:
@@ -50,7 +51,7 @@ endif()
 
 add_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_TYPE}
   HEADERS ${headers} ${configured_headers}
-  SOURCES ${sources}
+  SOURCES ${configured_sources}
   CXX_STANDARD 20
   DEFAULT_WARNING_OPTIONS
 )
