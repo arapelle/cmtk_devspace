@@ -3,7 +3,7 @@
 
 inline namespace @PROJECT_CODE_NAMESPACE@
 {
-namespace @PROJECT_CODE_FEATURE_NAME@
+namespace @PROJECT_CODE_SUBJECT_NAME@
 {
 
 std::string module_name()
