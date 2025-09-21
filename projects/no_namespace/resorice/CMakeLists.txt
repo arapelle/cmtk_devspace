@@ -13,6 +13,7 @@ set_build_type_ifndef()
 
 set_project_name(NAME "resorice")
 set(PROJECT_VERSION 0.1.0)
+set(PACKAGE_NAME ${PROJECT_NAME})
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
@@ -53,16 +54,16 @@ add_rsc_cpp_library(${PROJECT_TARGET_NAME} ${${PROJECT_UPPER_VAR_NAME}_LIBRARY_T
 )
 
 ## Add tests:
-add_test_subdirectory_if_build(test)
+add_test_subdirectory_if_built(test)
 
 ## Add examples:
-add_example_subdirectory_if_build(example)
+add_example_subdirectory_if_built(example)
 
 # C++ INSTALL
 
 ## Install C++ library:
-install_cpp_libraries(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
+install_cpp_targets(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
 
 ## Install project package
-install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})

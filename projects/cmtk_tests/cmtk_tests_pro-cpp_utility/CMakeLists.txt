@@ -11,9 +11,9 @@ check_in_source_build()
 set_build_type_ifndef()
 
 # C++ PROJECT
-
-set_project_name(NAMESPACE "cmtk_tests_pro" SUBJECT_NAME "cpp_utility" CODE_NAMESPACE "cmtk_tests" CODE_SUBJECT_NAME "cpp_util")
+set_project_name(CONTEXT_NAME "cmtk_tests_pro" SUBJECT_NAME "cpp_utility" CODE_CONTEXT_NAME "cmtk_tests" CODE_SUBJECT_NAME "cpp_util")
 set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
+set(PACKAGE_NAME ${PROJECT_NAME})
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
         message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_SEMANTIC_VERSION} ${CMAKE_BUILD_TYPE}")
@@ -27,8 +27,8 @@ add_subdirectory(external)
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
-        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_SUBJECT_NAME}/version.hpp.in
-        include/${PROJECT_CODE_NAMESPACE}/${PROJECT_CODE_SUBJECT_NAME}/cpp_util.hpp.in
+        include/${PROJECT_CODE_CONTEXT_NAME}/${PROJECT_CODE_SUBJECT_NAME}/version.hpp.in
+        include/${PROJECT_CODE_CONTEXT_NAME}/${PROJECT_CODE_SUBJECT_NAME}/cpp_util.hpp.in
 )
 
 ## Generated/Configured sources:
@@ -67,16 +67,16 @@ target_link_libraries(${PROJECT_TARGET_NAME}
 )
 
 ## Add tests:
-add_test_subdirectory_if_build(test)
+add_test_subdirectory_if_built(test NAME ${PROJECT_NAME})
 
 ## Add examples:
-add_example_subdirectory_if_build(example)
+add_example_subdirectory_if_built(example NAME ${PROJECT_NAME})
 
 # C++ INSTALL
 
 ## Install C++ library:
-install_cpp_libraries(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
+install_cpp_targets(TARGETS ${PROJECT_TARGET_NAME} EXPORT ${PROJECT_NAME}-targets)
 
 ## Install project package
-install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})

@@ -1,7 +1,7 @@
 #include <cmtk_tests/cpp_util/cpp_util.hpp> 
 #include <spdlog/spdlog.h>
 
-inline namespace @PROJECT_CODE_NAMESPACE@
+inline namespace @PROJECT_CODE_CONTEXT_NAME@
 {
 namespace @PROJECT_CODE_SUBJECT_NAME@
 {
