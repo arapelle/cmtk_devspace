@@ -13,8 +13,9 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_htool")
+set_project_name(CONTEXT_NAME "cmtk_tests" SUBJECT_NAME "cpp_htool")
 set(PROJECT_VERSION 0.1.0)
+set(PACKAGE_NAME ${PROJECT_NAME})
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_VERSION} ${CMAKE_BUILD_TYPE}")
@@ -25,12 +26,12 @@ include(CTest)
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
-        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+        include/${PROJECT_CONTEXT_NAME}/${PROJECT_SUBJECT_NAME}/version.hpp.in
 )
 
 ## Headers:
 set(headers
-  include/${PROJECT_NAMESPACE}/cpp_htool/cpp_htool.hpp
+  include/${PROJECT_CONTEXT_NAME}/cpp_htool/cpp_htool.hpp
 )
 
 ## Add C++ library
@@ -41,13 +42,13 @@ add_cpp_library(
 )
 
 ## Install C++ library
-install_cpp_library(
-    HEADER_ONLY ${PROJECT_NAME} 
+install_cpp_targets(
+    TARGETS ${PROJECT_NAME} 
     EXPORT ${PROJECT_NAME}-targets
 )
 
 ## Install package
-install_library_package(${PROJECT_NAME}
+install_package(${PROJECT_NAME}
                         INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in
 )
 install_uninstall_script(${PROJECT_NAME})

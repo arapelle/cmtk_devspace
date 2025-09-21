@@ -12,8 +12,9 @@ set_build_type_ifndef()
 
 # C++ PROJECT
 
-set_project_name(NAMESPACE "cmtk_tests" BASE_NAME "cpp_hutil")
+set_project_name(CONTEXT_NAME "cmtk_tests" SUBJECT_NAME "cpp_hutil")
 set_project_semantic_version(0.11.2 PRE_RELEASE "alpha.1" BUILD_METADATA "20231115")
+set(PACKAGE_NAME ${PROJECT_NAME})
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION}
         LANGUAGES CXX)
 message(STATUS "PROJECT : ${PROJECT_NAME} ${PROJECT_SEMANTIC_VERSION} ${CMAKE_BUILD_TYPE}")
@@ -24,12 +25,12 @@ include(CTest)
 ## Generated/Configured headers:
 configure_headers(configured_headers
     FILES
-        include/${PROJECT_NAMESPACE}/${PROJECT_BASE_NAME}/version.hpp.in
+        include/${PROJECT_CONTEXT_NAME}/${PROJECT_SUBJECT_NAME}/version.hpp.in
 )
 
 ## Headers:
 set(headers
-  include/${PROJECT_NAMESPACE}/cpp_hutil/cpp_hutil.hpp
+  include/${PROJECT_CONTEXT_NAME}/cpp_hutil/cpp_hutil.hpp
 )
 
 ## Add C++ library
@@ -45,16 +46,16 @@ find_package(TBB 2021 REQUIRED CONFIG)
 target_link_libraries(${PROJECT_NAME} INTERFACE TBB::tbb)
 
 ## Add tests:
-add_test_subdirectory_if_build(test)
+add_test_subdirectory_if_built(test)
 
 ## Add examples:
-add_example_subdirectory_if_build(example)
+add_example_subdirectory_if_built(example)
 
 # C++ INSTALL
 
 ## Install C++ library:
-install_cpp_libraries(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
+install_cpp_targets(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-targets)
 
 ## Install project package
-install_library_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
+install_package(${PROJECT_NAME} INPUT_PACKAGE_CONFIG_FILE CMake-package-config.cmake.in)
 install_uninstall_script(${PROJECT_NAME})

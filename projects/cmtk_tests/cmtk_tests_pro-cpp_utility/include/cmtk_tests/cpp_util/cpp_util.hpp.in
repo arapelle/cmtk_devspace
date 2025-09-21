@@ -6,9 +6,9 @@
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #endif
 
-inline namespace @PROJECT_CODE_NAMESPACE@
+inline namespace @PROJECT_CODE_CONTEXT_NAME@
 {
-namespace @PROJECT_CODE_FEATURE_NAME@
+namespace @PROJECT_CODE_SUBJECT_NAME@
 {
 
 std::string module_name();
